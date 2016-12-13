@@ -31,43 +31,49 @@ public class App {
      */
     public void lanzarAplicacion() {
 
+        if (comprobarFecha(DIA, MES)) {
+            System.out.printf("Fecha......: %02d-%02d-%04d\n", DIA, MES, ANY);
+        } else {
+            System.out.println("Datos incorrectos, eso no es una fecha.");
+        }
     }
 
+    //Comprueba que es un día.
     private boolean comprobarDia(int d) {
 
         return d >= 1 && d <= obtenerDiasMes(MES, ANY);
     }
 
+    //Comprueba que es un mes.
     private boolean comprobarMes(int m) {
 
         return m >= 1 && m <= 12;
     }
 
-    private boolean comprobarAny(int a) {
+    private boolean comprobarFecha(int d, int m) {
 
-        return a >= 0 && a <= 59;
+        return comprobarDia(d) && comprobarMes(m);
     }
 
-    private boolean comprobarFecha(int d, int m, int a) {
-
-        return comprobarDia(d) && comprobarMes(m) && comprobarAny(a);
-    }
-
+    //Comprueba si es un mes de 31 días.
     private boolean comprobarMes31(int mes) {
 
         return mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12;
     }
 
+    //Comprueba si es un mes de 30 días.
     private boolean comprobarMes30(int mes) {
 
         return mes == 4 || mes == 6 || mes == 7 || mes == 9 || mes == 11;
     }
 
+    //Comprueba si estamos en un año bisiesto.
     private boolean comprobarBisiesto(int any) {
 
         return any % 400 == 0 || any % 100 != 0 || any % 4 == 0;
     }
 
+    //Obtiene los días que tiene el mes de febrero ese año.
     private int obtenerDiasFebrero(int any) {
 
         int dias;
@@ -80,6 +86,7 @@ public class App {
         return dias;
     }
 
+    //Obtiene los días del mes.
     private int obtenerDiasMes(int mes, int any) {
 
         int dias;
